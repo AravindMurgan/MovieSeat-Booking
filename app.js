@@ -8,16 +8,35 @@ const movie = document.getElementById('movie');
 ///Total Price Comes from the movie value;
 let totalPrice = movie.value;
 
+//populate UI//
+populateUI();
+
 //setMovie data//
 function setMovieData(movieIndex,moviePrice){
     localStorage.setItem('movieIndex',movieIndex);
     localStorage.setItem('moviePrice',moviePrice);
 }
 
+//populate LS items at UI//
+function populateUI(){
+    const selectedSeats = JSON.parse(localStorage.getItem('seatsIndex'));
+    
+    //
+    selectedSeats.forEach(function(seat){
+
+        if(selectedSeats !== null && selectedSeats.length > 0 ){
+            seats.forEach(function(seat,index){
+               if(selectedSeats.indexOf(index) > -1){
+                   seat.classList.add('selected');
+               }
+            })
+        }
+    })
+}
 //count and price
  function updateSelectedCount(){
 
-     selectedSeats = document.querySelectorAll('.row .seat.selected');
+     let selectedSeats = document.querySelectorAll('.row .seat.selected');
     
      const seatsIndex = [...selectedSeats].map((selectedSeat)=> [...seats].indexOf(selectedSeat));
      //set LS//
